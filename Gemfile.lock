@@ -1,0 +1,47 @@
+GIT
+  remote: https://github.com/lime666/to_html_gem.git
+  revision: 9ecdcdd2db9ba949dfbf50ea990dbe570ad499f4
+  specs:
+    to_html_gem (0.0.23)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.2)
+    mini_portile2 (2.6.1)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
+    parallel (1.21.0)
+    parser (3.0.3.2)
+      ast (~> 2.4.1)
+    racc (1.6.0)
+    rack (2.2.3)
+    rainbow (3.0.0)
+    regexp_parser (2.2.0)
+    rexml (3.2.5)
+    rubocop (1.23.0)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.12.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.15.0)
+      parser (>= 3.0.1.1)
+    ruby-progressbar (1.11.0)
+    unicode-display_width (2.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nokogiri
+  rack
+  rubocop
+  to_html_gem!
+
+BUNDLED WITH
+   2.1.4

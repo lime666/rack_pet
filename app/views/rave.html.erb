@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tamagotchi App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
+  </head>
+
+  <body>
+
+<div class="row" >
+  <form action="/rave" method="get">
+    <h3>Energy: <%= get('energy') %></h3>
+  </form>
+
+  <form action="/play" method="get">
+    <%= render 'play' %>
+    <button type="submit" class="btn btn-outline-dark" name="play" value="play">Play</button>
+  </form>
+
+  <form action="/exit" method="get">
+    <button type="submit" class="btn btn-outline-dark" name="exit" value="exit">Exit</button>
+  </form>
+
+</div>
+
+  </body>
+</html>
