@@ -76,5 +76,4 @@ module PetMethods
       r.redirect('/play')
     end
   end
-
 end

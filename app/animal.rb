@@ -22,7 +22,6 @@ class Animal
         r.set_cookie('name', @request.params['name'])
         r.redirect('/play')
       end
-
     when '/play'
       return PetMethods.rave_params(@request, 'rave') if @request.params['rave']
       return PetMethods.sleep_params(@request, 'sleep') if @request.params['sleep']
@@ -34,6 +33,8 @@ class Animal
     when '/exit'
       Rack::Response.new('The End', 404)
       Rack::Response.new(render('exit.html.erb'))
+    else
+      Rack::Response.new(render('play.html.erb'))
     end
   end
 
