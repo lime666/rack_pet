@@ -3,7 +3,7 @@ require 'time'
 require './app/lib/pet_methods'
 
 class Animal
-  include Pet_Methods
+  include PetMethods
 
   def self.call(env)
     new(env).response.finish
@@ -24,16 +24,17 @@ class Animal
       end
 
     when '/play'
-      return Pet_Methods.rave_params(@request, 'rave') if @request.params['rave']
-      return Pet_Methods.sleep_params(@request, 'sleep') if @request.params['sleep']
-      return Pet_Methods.eat_params(@request, 'eat') if @request.params['eat']
-      return Pet_Methods.bath_params(@request, 'bath') if @request.params['bath']
-      return Pet_Methods.pet_params(@request, 'pet') if @request.params['pet']
+      return PetMethods.rave_params(@request, 'rave') if @request.params['rave']
+      return PetMethods.sleep_params(@request, 'sleep') if @request.params['sleep']
+      return PetMethods.eat_params(@request, 'eat') if @request.params['eat']
+      return PetMethods.bath_params(@request, 'bath') if @request.params['bath']
+      return PetMethods.pet_params(@request, 'pet') if @request.params['pet']
+
       Rack::Response.new(render('play.html.erb'))
     when '/exit'
       Rack::Response.new('The End', 404)
       Rack::Response.new(render('exit.html.erb'))
-    end 
+    end
   end
 
   def render(template)
@@ -47,7 +48,7 @@ class Animal
   end
 
   def get(attr)
-    @request.cookies["#{attr}"].to_i
+    @request.cookies[attr.to_s].to_i
   end
 
   def initialize(env)

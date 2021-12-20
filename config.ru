@@ -1,9 +1,9 @@
 require './app/animal'
 
 use Rack::Reloader, 0
-use Rack::Static, :urls => ["/views"]
+use Rack::Static, urls: '/views'
 use Rack::Auth::Basic do |username, password|
-  password == "passwd"
+  password == 'passwd'
 end
 
 run Animal
