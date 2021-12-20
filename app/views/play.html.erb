@@ -9,7 +9,7 @@
     <h1>Hi, I'm your pet. My name is <%= name %>. Take care of me.<h1>
     <h3>Hunger level   <%= get('eat')  %></h3>
     <h3>Lives <%= get('lives')%></h3>
-    <h3>Sleep  <%= get('rest') %></h3>
+    <h3>Sleep  <%= get('sleep') %></h3>
     <h3>Happiness <%= get('pet') %></h3>
     <h3>Rave <%= get('rave') %></h3>
     <h3>Bath <%= get('bath') %></h3>
@@ -19,7 +19,7 @@
   <form action="/play" method="get">
     <button type="submit" class="btn btn-outline-info" name="eat" value="eat">Feed</button>
     <button type="submit" class="btn btn-outline-danger" name="pet" value="pet">Caress animal to boost his happiness</button>
-    <button type="submit" class="btn btn-outline-success" name="rest" value="rest">Rest or sleep</button>
+    <button type="submit" class="btn btn-outline-success" name="sleep" value="sleep">Rest or sleep</button>
     <button type="submit" class="btn btn-outline-warning" name="rave" value="rave">Rave</button>
     <button type="submit" class="btn btn-outline-warning" name="bath" value="bath">Bath</button>
   </form>

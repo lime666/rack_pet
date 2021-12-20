@@ -27,11 +27,11 @@ class Animal
 
     when '/play'
       return Pet_Methods.rave_params(@request, 'rave') if @request.params['rave']
-      return Pet_Methods.change_params(@request, 'rest') if @request.params['rest']
+      return Pet_Methods.sleep_params(@request, 'sleep') if @request.params['sleep']
       return Pet_Methods.change_params(@request, 'eat') if @request.params['eat']
-      return Pet_Methods.change_params(@request, 'bath') if @request.params['bath']
+      return Pet_Methods.bath_params(@request, 'bath') if @request.params['bath']
       return Pet_Methods.change_params(@request, 'status') if @request.params['status']
-      return Pet_Methods.change_params(@request, 'pet') if @request.params['pet']
+      return Pet_Methods.pet_params(@request, 'pet') if @request.params['pet']
       Rack::Response.new(render('play.html.erb'))
     when '/exit'
       Rack::Response.new('The End', 404)
@@ -78,7 +78,7 @@ class Animal
     end
   end
 
-  def rest
+  def sleep
     p 'Вы укладываете животину спать.'
     @asleep = true
     @energy += 3
@@ -91,12 +91,6 @@ class Animal
     p 'Жизнь меня к такому не готовила, хозяин.' if @energy <= 6
     time_to_pass
     p 'Не любишь ты меня, хозяин. Помер я.' if death
-  end
-
-  def wakeup
-    @asleep = false
-    p 'За что, хозяин?'
-    p 'Ну, раз ты меня рабудил..Чем займемя, милашка?'
   end
 
   def pet
@@ -123,27 +117,6 @@ class Animal
     end
   end
 
-  def voice
-    p 'Во время линьки у некоторых птиц утрачивается способность к полету. '\
-      'Так, например, утки при этом не могут летать 20-35 суток, '\
-      'лебеди – почти 1,5 месяца.'
-  end
-
-  def help
-    p 'eat - накормить'
-    p 'rest - положить спать'
-    p 'rave - поиграть'
-    p 'repeat - повторить действие'
-    p 'wakeup - разбудить'
-    p 'pet - учить'
-    p 'bath - купаться'
-    p 'voice - животина что-то поведает'
-    p 'wc - опорожнить кишечник'
-    p 'help - помощь'
-    p 'status - что происходит'
-    p 'exit - выйти из игры'
-  end
-
   def status
     p 'Зачем я живу? Даже покормить некому...' if hungry?
     p 'Где упал, там и кровать.' if want_to_sleep?
@@ -159,50 +132,6 @@ class Animal
   end
 
   private
-
-  def hungry?
-    @stuff_in_belly <= 3
-  end
-
-  def time_to_pass
-    if @stuff_in_belly.positive?
-      @stuff_in_belly -= 1
-      @stuff_in_intestine += 1
-    elsif @asleep
-      @asleep = false
-      @stuff_in_belly -= 1
-    end
-  end
-
-  def want_to_sleep?
-    if @asleep == false && @energy <= 2
-    end
-  end
-
-  def death
-    if @stuff_in_belly.zero? || @energy.zero?
-      @lives -= 1
-      @asleep = false
-      @stuff_in_belly = 10
-      @stuff_in_intestine = 0
-      @energy = 10
-      p "Осталось #{@lives} жизней."
-    elsif @stuff_in_belly == 2 || @energy == 2
-      @lives -= 1
-      @asleep = false
-      @stuff_in_belly = 10
-      @stuff_in_intestine = 0
-      @energy = 10
-      p 'Смерть идет по пятам. Знать бы что нас ждет впереди...'
-    elsif @stuff_in_belly > 10
-      @lives -= 1
-      @asleep = false
-      @stuff_in_belly = 10
-      @stuff_in_intestine = 0
-      @energy = 10
-      p "#{@name} уже не с нами. Готовьте пирожки."
-    end
-  end
 
   def pet_age
     age = Time.now - @birth_time
