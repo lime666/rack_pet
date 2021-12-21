@@ -8,7 +8,7 @@ module PetMethods
       command = ($COMMANDS - [name]).sample
 
       r.set_cookie(command, request.cookies["#{command}"].to_i - 2)
-  
+
       r.redirect('/play')
     end
   end
